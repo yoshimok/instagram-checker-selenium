@@ -54,9 +54,18 @@ for i in range(10):  # 投稿件数を決める
   sleep(1)
   try:
     section = driver.find_elements_by_xpath("//section[1]/span/button/div/span//*[name()='svg']//*[name()='path'][@d='%s']" % heart_active)
-    if (len(section) < 1 ): print("いいね")
-  except:
+    likeButton = driver.find_elements_by_xpath("//section[1]/span/button")
+    print(likeButton[0])
+
+    if (len(section) < 1 ): 
+      print("いいね")
+      likeButton[0].click()
+      
+    
+  except Exception as e:
+    print(e)
     break
+  
   sleep(1)
   driver.find_element_by_xpath("//a[contains(text(), '次へ')]").click()  
 
